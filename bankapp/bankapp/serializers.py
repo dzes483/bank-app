@@ -1,27 +1,10 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from drf_writable_nested.serializers import WritableNestedModelSerializer
 
-from bankapp.models import Product, IncomeBracket, AgeBracket
-
-
-class IncomeBracketSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = IncomeBracket
-        fields = ['income']
+from bankapp.models import Product
 
 
-class AgeBracketSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = AgeBracket
-        fields = ['age']
-
-
-class ProductSerializer(WritableNestedModelSerializer):
-    income = IncomeBracketSerializer(many=True)
-    age = AgeBracketSerializer(many=True)
+class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
