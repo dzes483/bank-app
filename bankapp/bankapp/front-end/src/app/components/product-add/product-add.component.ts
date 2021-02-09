@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Product } from '../../model/product';
 
 @Component({
@@ -11,7 +11,7 @@ import { Product } from '../../model/product';
 export class ProductAddComponent {
 
   public product: Product | undefined;
-  productForm: FormGroup;
+  public productForm: FormGroup;
   message: null;
   public ageBrackets = {
     '0-17': 'JUNIOR',
@@ -19,7 +19,7 @@ export class ProductAddComponent {
     '65+': 'SENIOR'
   };
   public incomeBrackets = {
-    ' 0 ': 'NO_INCOME',
+    '0': 'NO_INCOME',
     '1-12000': 'LOW_INCOME',
     '12001-40000': 'MEDIUM_INCOME',
     '40000+': 'HIGH_INCOME'
@@ -28,10 +28,10 @@ export class ProductAddComponent {
   constructor(private productService: ProductService,
               private fb: FormBuilder) {
     this.productForm = this.fb.group({
-      name: ['', Validators.required],
-      age: ['', Validators.required],
-      income: ['', Validators.required],
-      student: ['', Validators.required]
+      name: [null, [Validators.required, Validators.minLength(3)]],
+      age: [null, Validators.required],
+      student: [null],
+      income: [null, Validators.required]
     });
   }
 
