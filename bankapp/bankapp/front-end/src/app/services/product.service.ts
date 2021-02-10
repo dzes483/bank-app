@@ -39,8 +39,8 @@ export class ProductService {
     return this.http.delete(`${BASE_URL}/manage/${productName}`, this.httpOptions);
   }
 
-  searchByCriteria(ageBracket: string, incomeBracket: string, student: boolean): Observable<any> {
-    return this.http.get(`${BASE_URL}/search?ageBracket=${ageBracket}&incomeBracket=${incomeBracket}&student=${student}`,
+  searchByCriteria(age: string, income: string, student: boolean): Observable<any> {
+    return this.http.get(`${BASE_URL}/products/search?age=${age}&income=${income}&student=${student}`,
       this.httpOptions);
   }
 }
