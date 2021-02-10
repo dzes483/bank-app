@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Product } from '../../model/product';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-product-add',
@@ -10,9 +9,10 @@ import { Product } from '../../model/product';
 })
 export class ProductAddComponent {
 
-  public product: Product | undefined;
   public productForm: FormGroup;
-  message: null;
+  isSubmitted = false;
+  isSubmitFailed = false;
+  errorMessage = '';
   public ageBrackets = {
     '0-17': 'JUNIOR',
     '18-64': 'ADULT',
@@ -30,19 +30,32 @@ export class ProductAddComponent {
     this.productForm = this.fb.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
       age: [null, Validators.required],
-      student: [null],
+      student: [null, Validators.required],
       income: [null, Validators.required]
     });
   }
 
-  createProduct(): any {
-    this.productService.create(this.productForm.value)
-      .subscribe((result: any) => {
-        this.message = result.msg;
-      }, (err) => {
-        this.message = err.error.msg;
-      });
+  createProduct(): void {
+    this.productService.create(this.productForm.value).subscribe(
+      response => {
+        console.log(response);
+        this.isSubmitted = true;
+      },
+        error => {
+        this.errorMessage = error.error.message;
+        this.isSubmitFailed = true;
+        console.log(error);
+        }
+    );
   }
+
+  newProduct(): void {
+    this.isSubmitted = false;
+    this.isSubmitFailed = false;
+    this.productForm.reset();
+  }
+
+  // Getters
   get name(): any {
     return this.productForm.get('name');
   }

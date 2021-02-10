@@ -68,7 +68,15 @@
       Please choose "yes" or "no"
     </div>
     <br><br>
-    <button type="submit" (click)="createProduct()">Create product</button>
+    <div class="submit-button">
+      <input type="submit" value="Create Product">
+    </div>
+
   </form>
+  <div *ngIf="isSubmitted">
+    <div>Product created successfully</div>
+    <button routerLink="..">Back</button>
+    <button (click)="newProduct()">Add another</button>
+  </div>
 </div>
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from multiselectfield import MultiSelectField
+from django.contrib.postgres.fields import ArrayField
 
 AGE_CHOICES = [
     ('JUNIOR', '0-17'),
@@ -19,9 +19,9 @@ INCOME_CHOICES = [
 
 class Product(models.Model):
     name = models.CharField(blank=False, max_length=120, unique=True)
-    age = MultiSelectField(choices=AGE_CHOICES)
+    age = ArrayField(models.CharField(choices=AGE_CHOICES, max_length=160))
     student = models.BooleanField(blank=False)
-    income = MultiSelectField(choices=INCOME_CHOICES)
+    income = ArrayField(models.CharField(choices=INCOME_CHOICES, max_length=160))
     slug = models.SlugField(default='', editable=False, max_length=120)
 
     def save(self, *args, **kwargs):
