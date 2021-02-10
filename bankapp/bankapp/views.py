@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
-from django.shortcuts import redirect, render
-from django.views.generic.base import View, TemplateView
-from rest_framework import viewsets, permissions, mixins, generics
+from django.views.generic.base import TemplateView
+from rest_framework import viewsets, mixins, generics
+# import django_filters.rest_framework
 
 from bankapp.models import Product
 from bankapp.serializers import UserSerializer, GroupSerializer, ProductSerializer
@@ -18,6 +18,7 @@ class ProductCreateViewSet(mixins.CreateModelMixin, generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+
 class ProductDetailViewSet(viewsets.ModelViewSet):
     """
     A simple viewset for viewing and editing products.
@@ -28,13 +29,24 @@ class ProductDetailViewSet(viewsets.ModelViewSet):
     lookup_field = 'slug'
 
 
-class ProductListViewSet(viewsets.ReadOnlyModelViewSet):
+class ProductListViewSet(generics.ListAPIView):
     """
     API endpoint that allows products to be viewed.
     """
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    lookup_field = 'slug'
+    queryset = Product.objects.all()
+
+    def get_queryset(self):
+        """
+        Optionally restricts the products shown by filtering the query parameters in the URL.
+        """
+        queryset = Product.objects.all()
+        age = self.request.query_params.get('ageBracket', None)
+        income = self.request.query_params.get('incomeBracket', None)
+        student = self.request.query_params.get('student', None)
+        if age is not None:
+            queryset = queryset.filter(age__contains=age)
+            return queryset
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -57,5 +69,3 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class FrontEndRenderView(TemplateView):
     template_name = 'bankapp/index.html'
-
-
