@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductAddComponent } from './components/product-add/product-add.component';
+import { ProductManageComponent } from './components/product-manage/product-manage.component';
 
 
 const routes: Routes = [
   { path: 'api/products', component: ProductListComponent },
   { path: 'api/manage/add', component: ProductAddComponent },
+  { path: 'api/manage', component: ProductManageComponent}
 ];
 
 @NgModule({
