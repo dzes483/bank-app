@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { Product } from '../../model/product';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -31,17 +30,17 @@ export class ProductListComponent {
   constructor(private productService: ProductService,
               private fb: FormBuilder) {
     this.queryForm = this.fb.group({
-      ageBracket: ['', Validators.required],
-      incomeBracket: ['', Validators.required],
+      age: ['', Validators.required],
+      income: ['', Validators.required],
       student: ['', Validators.required]
     });
   }
 
-  get ageBracket(): any {
-    return this.queryForm.get('ageBracket');
+  get age(): any {
+    return this.queryForm.get('age');
   }
-  get incomeBracket(): any {
-    return this.queryForm.get('incomeBracket');
+  get income(): any {
+    return this.queryForm.get('income');
   }
   get student(): any {
     return this.queryForm.get('student');
@@ -49,8 +48,8 @@ export class ProductListComponent {
 
   getProductsByCriteria(): void {
     this.productService.searchByCriteria(
-      this.queryForm.value.ageBracket,
-      this.queryForm.value.incomeBracket,
+      this.queryForm.value.age,
+      this.queryForm.value.income,
       this.queryForm.value.student
     ).subscribe(
       (products: any) => {
@@ -61,4 +60,6 @@ export class ProductListComponent {
         console.log(error);
       });
   }
+
+
 }
