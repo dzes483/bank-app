@@ -6,8 +6,8 @@
         #ngForm = "ngForm">
     <div class="age-form">
       <label>How old are you?<br><br>
-        <select formControlName="ageBracket"
-                name="ageBracket">
+        <select formControlName="age"
+                name="age">
           <option value="" disabled>
             Age
           </option>
@@ -18,14 +18,14 @@
         </select>
       </label>
     </div>
-    <div *ngIf="ngForm.submitted && ageBracket.invalid">
+    <div *ngIf="ngForm.submitted && age.invalid">
       Age is required
     </div>
     <br><br>
     <div class="income-form">
       <label>What is your yearly income?<br><br>
-        <select formControlName="incomeBracket"
-                name="incomeBracket">
+        <select formControlName="income"
+                name="income">
           <option value="" disabled>
             Income
           </option>
@@ -36,7 +36,7 @@
         </select>
       </label>
     </div>
-    <div *ngIf="ngForm.submitted && incomeBracket.invalid">
+    <div *ngIf="ngForm.submitted && income.invalid">
       Income is required
     </div>
     <br><br>
@@ -46,14 +46,14 @@
         <input type="radio"
                name="student"
                formControlName="student"
-               value="False">
+               value="True">
         Yes
       </label>
       <label>
         <input type="radio"
                name="student"
                formControlName="student"
-               value="True">
+               value="False">
         No
       </label>
     </div>
@@ -63,4 +63,6 @@
     <br><br>
     <button type="submit">Get recommendations</button>
   </form>
+</div>
+<div>
 </div>
