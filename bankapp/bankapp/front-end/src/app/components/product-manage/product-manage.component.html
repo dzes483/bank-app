@@ -1,9 +1,9 @@
 <div>
   <ul>
-    <li *ngFor="let product of products; let i = index">
-      <p>{{product.name}}</p>
+    <li *ngFor="let product of products | keyvalue">
+      <p>{{product.key}}</p>
+      <p>{{product.value}}</p>
     </li>
   </ul>
   <p>Product list</p>
-
 </div>
