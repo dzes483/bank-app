@@ -18,15 +18,15 @@ export class ProductService {
   }
 
   get(productSlug: string): Observable<any> {
-    return this.http.get(`${BASE_URL}/${productSlug}`);
+    return this.http.get(`${BASE_URL}/manage/${productSlug}`);
   }
 
   create(data: any): Observable<any> {
     return this.http.post(`${BASE_URL}/manage/add`, data);
   }
 
-  update(data: any, productName: string): Observable<any> {
-    return this.http.put(`${BASE_URL}/manage/${productName}`, data);
+  update(data: any, productSlug: string): Observable<any> {
+    return this.http.put(`${BASE_URL}/manage/${productSlug}`, data);
   }
 
   delete(productSlug: string): Observable<any> {
