@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-product-manage',
@@ -9,13 +10,15 @@ import { ProductService } from '../../services/product.service';
 export class ProductManageComponent implements OnInit {
 
   public products$?: any;
-  productSlug?: string;
+  public product$: any;
+  productSlug!: string;
+  isHideEdit = true;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getProducts();
-    this.products$ = this.productService.getAll();
   }
 
   getProducts(): void {
@@ -28,6 +31,14 @@ export class ProductManageComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  toggleEditMenu(): void {
+    this.isHideEdit = !this.isHideEdit;
+  }
+
+  updateProduct(): void {
+    this.productService.update(this.product$, this.productSlug);
   }
 
   deleteProduct(productSlug: string): void {

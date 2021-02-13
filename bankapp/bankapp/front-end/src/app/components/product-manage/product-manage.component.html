@@ -6,8 +6,9 @@
       <p>{{product.age}}</p>
       <p>{{product.student}}</p>
       <p>{{product.income}}</p>
+      <button type="button" (click)="toggleEditMenu()" >Edit</button>
+      <div [hidden]="isHideEdit">Edit form here</div>
       <button type="submit" (click)="deleteProduct(product.slug)">Delete</button>
     </li>
   </ul>
-  <p>Product list</p>
 </div>
