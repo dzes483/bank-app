@@ -31,6 +31,8 @@ export class ProductManageComponent implements OnInit {
   }
 
   deleteProduct(productSlug: string): void {
-    this.productService.delete(productSlug).subscribe();
+    if (window.confirm('Are you sure you wish to delete this product?')) {
+      this.productService.delete(productSlug).subscribe(res => this.getProducts());
+    }
   }
 }
