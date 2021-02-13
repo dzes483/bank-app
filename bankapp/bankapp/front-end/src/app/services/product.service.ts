@@ -17,8 +17,8 @@ export class ProductService {
     return this.http.get(`${BASE_URL}/manage`);
   }
 
-  get(productName: string): Observable<any> {
-    return this.http.get(`${BASE_URL}/${productName}`);
+  get(productSlug: string): Observable<any> {
+    return this.http.get(`${BASE_URL}/${productSlug}`);
   }
 
   create(data: any): Observable<any> {
@@ -29,8 +29,8 @@ export class ProductService {
     return this.http.put(`${BASE_URL}/manage/${productName}`, data);
   }
 
-  delete(productName: string): Observable<any> {
-    return this.http.delete(`${BASE_URL}/manage/${productName}`);
+  delete(productSlug: string): Observable<any> {
+    return this.http.delete(`${BASE_URL}/manage/${productSlug}`);
   }
 
   searchByCriteria(age: string, income: string, student: boolean): Observable<any> {

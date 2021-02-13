@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import {Observable} from 'rxjs';
-import {Product} from '../../model/product';
 
 @Component({
   selector: 'app-product-manage',
@@ -11,6 +9,7 @@ import {Product} from '../../model/product';
 export class ProductManageComponent implements OnInit {
 
   public products$?: any;
+  productSlug?: string;
 
   constructor(private productService: ProductService) { }
 
@@ -22,12 +21,16 @@ export class ProductManageComponent implements OnInit {
   getProducts(): void {
     this.productService.getAll().subscribe(
       response => {
-        this.products$ = response;
+        this.products$ = response.results;
         console.log(response);
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  deleteProduct(productSlug: string): void {
+    this.productService.delete(productSlug).subscribe();
   }
 }

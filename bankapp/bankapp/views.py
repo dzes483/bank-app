@@ -19,12 +19,12 @@ class ProductCreateViewSet(mixins.CreateModelMixin, generics.GenericAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class ProductDetailViewSet(viewsets.ModelViewSet):
+class ProductDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
     """
     A simple viewset for viewing and editing products.
     """
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    queryset = Product.objects.all()
     # permission_classes = [permissions.IsAuthenticated]
     lookup_field = 'slug'
 

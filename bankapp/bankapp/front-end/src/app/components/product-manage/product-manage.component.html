@@ -1,8 +1,12 @@
 <div>
   <ul>
     <li *ngFor="let product of products$">
+      <h5>Product Name:</h5>
       <p>{{product.name}}</p>
       <p>{{product.age}}</p>
+      <p>{{product.student}}</p>
+      <p>{{product.income}}</p>
+      <button type="submit" (click)="deleteProduct(product.slug)">Delete</button>
     </li>
   </ul>
   <p>Product list</p>

@@ -17,6 +17,7 @@ urlpatterns = [
     path('api/', include('rest_framework.urls')),
     path('api/login/', obtain_jwt_token),
     path('api/manage', views.ProductListViewSet.as_view()),
+    path('api/manage/<slug:slug>', views.ProductDetailViewSet.as_view()),
     path('api/manage/add', views.ProductCreateViewSet.as_view()),
     path('api/products', views.ProductListViewSet.as_view()),
     path('api/products/search', views.ProductListViewSet.as_view()),
