@@ -1,8 +1,8 @@
 export interface Product {
   name: string;
-  age: Array<any>;
+  age: Array<string>;
   student: boolean;
-  income: Array<any>;
+  income: Array<string>;
   slug: string;
 }
 

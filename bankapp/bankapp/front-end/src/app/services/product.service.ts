@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Product} from '../model/product';
+import { Product } from '../model/product';
 import {catchError} from 'rxjs/operators';
 
 const BASE_URL = 'http://localhost:8000/api';
@@ -13,11 +13,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  readAll(): Observable<any> {
+  getAll(): Observable<any> {
     return this.http.get(`${BASE_URL}/manage`);
   }
 
-  read(productName: string): Observable<any> {
+  get(productName: string): Observable<any> {
     return this.http.get(`${BASE_URL}/${productName}`);
   }
 

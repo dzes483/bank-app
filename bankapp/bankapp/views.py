@@ -35,18 +35,17 @@ class ProductListViewSet(generics.ListAPIView):
     """
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
-
-    def get_queryset(self):
-        """
-        Optionally restricts the products shown by filtering the query parameters in the URL.
-        """
-        queryset = Product.objects.all()
-        age = self.request.query_params.get('ageBracket', None)
-        income = self.request.query_params.get('incomeBracket', None)
-        student = self.request.query_params.get('student', None)
-        if age is not None:
-            queryset = queryset.filter(age__contains=age)
-            return queryset
+    # def get_queryset(self):
+    #     """
+    #     Optionally restricts the products shown by filtering the query parameters in the URL.
+    #     """
+    #     age = self.request.query_params.get('age')
+    #     income = self.request.query_params.get('income')
+    #     student = self.request.query_params.get('student')
+    #     params = [age, income, student]
+    #     if params:
+    #         queryset = queryset.filter(age__contains=age, income__contains=income, student__exact=student)
+    #     return queryset
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -67,5 +66,5 @@ class GroupViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
 
 
-class FrontEndRenderView(TemplateView):
-    template_name = 'bankapp/index.html'
+# class FrontEndRenderView(TemplateView):
+#     template_name = 'bankapp/index.html'

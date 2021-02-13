@@ -1,8 +1,8 @@
 <div>
   <ul>
-    <li *ngFor="let product of products | keyvalue">
-      <p>{{product.key}}</p>
-      <p>{{product.value}}</p>
+    <li *ngFor="let product of products$">
+      <p>{{product.name}}</p>
+      <p>{{product.age}}</p>
     </li>
   </ul>
   <p>Product list</p>

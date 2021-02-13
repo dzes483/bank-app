@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import {Observable} from 'rxjs';
+import {Product} from '../../model/product';
 
 @Component({
   selector: 'app-product-manage',
@@ -8,20 +10,19 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductManageComponent implements OnInit {
 
-  products: any;
-  productName?: string;
+  public products$?: any;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.getProducts();
-    console.log(this.products);
+    this.products$ = this.productService.getAll();
   }
 
   getProducts(): void {
-    this.productService.readAll().subscribe(
+    this.productService.getAll().subscribe(
       response => {
-        this.products = response;
+        this.products$ = response;
         console.log(response);
       },
       error => {
