@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import { SlugifyPipe } from '../../shared/slugify.pipe';
 
 @Component({
   selector: 'app-product-manage',
@@ -11,15 +13,28 @@ export class ProductManageComponent implements OnInit {
 
   public products$?: any;
   public product$: any;
-  productSlug!: string;
+  slug!: string;
+  productEditForm: FormGroup;
   isHideEdit = true;
 
   constructor(private productService: ProductService,
-              private fb: FormBuilder) { }
+              private route: ActivatedRoute,
+              private fb: FormBuilder,
+              private slugifyPipe: SlugifyPipe) {
+    this.productEditForm = this.fb.group({
+      name: [null, [Validators.required, Validators.minLength(3)]],
+      age: [null, Validators.required],
+      student: [null, Validators.required],
+      income: [null, Validators.required]
+    });
+  }
 
   ngOnInit(): void {
     this.getProducts();
+    this.getProduct();
   }
+
+
 
   getProducts(): void {
     this.productService.getAll().subscribe(
@@ -37,9 +52,9 @@ export class ProductManageComponent implements OnInit {
     this.isHideEdit = !this.isHideEdit;
   }
 
-  updateProduct(): void {
-    this.productService.update(this.product$, this.productSlug);
-  }
+  // updateProduct(): void {
+  //   this.productService.update(this.product$, this.productSlug);
+  // }
 
   deleteProduct(productSlug: string): void {
     if (window.confirm('Are you sure you wish to delete this product?')) {
