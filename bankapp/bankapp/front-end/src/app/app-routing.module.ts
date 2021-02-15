@@ -9,7 +9,8 @@ import { ProductManageComponent } from './components/product-manage/product-mana
 const routes: Routes = [
   { path: 'api/products', component: ProductListComponent },
   { path: 'api/manage/add', component: ProductAddComponent },
-  { path: 'api/manage', component: ProductManageComponent}
+  { path: 'api/manage/:productSlug', component: ProductManageComponent},
+  { path: 'api/manage', component: ProductManageComponent},
 ];
 
 @NgModule({
