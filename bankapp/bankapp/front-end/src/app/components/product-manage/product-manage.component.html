@@ -6,7 +6,7 @@
       <p>{{product.age}}</p>
       <p>{{product.student}}</p>
       <p>{{product.income}}</p>
-      <button type="button" (click)="getProduct()" >Get product</button>
+      <a href="api/manage/{{product.slug}}">Edit</a>
       <div [hidden]="isHideEdit">
         <div class="form-group">
           <form
