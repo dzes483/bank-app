@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
-import { SlugifyPipe } from '../../shared/slugify.pipe';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-manage',
@@ -12,15 +12,13 @@ import { SlugifyPipe } from '../../shared/slugify.pipe';
 export class ProductManageComponent implements OnInit {
 
   public products$?: any;
-  public product$: any;
   slug!: string;
   productEditForm: FormGroup;
   isHideEdit = true;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private fb: FormBuilder,
-              private slugifyPipe: SlugifyPipe) {
+              private fb: FormBuilder) {
     this.productEditForm = this.fb.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
       age: [null, Validators.required],
@@ -31,10 +29,7 @@ export class ProductManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    this.getProduct();
   }
-
-
 
   getProducts(): void {
     this.productService.getAll().subscribe(
