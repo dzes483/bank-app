@@ -1,1 +1,85 @@
 <p>product-detail works!</p>
+<p>{{productName}}</p>
+<p>{{productAge}}</p>
+<h2>Product Recommendations</h2>
+
+<div class="form-group">
+  <form [formGroup]="productEditForm"
+        (ngSubmit)="productEditForm.valid && updateProduct()"
+        #ngForm = "ngForm">
+    <div class="name-form">
+      <label>Product name<br>
+        <input type="text"
+               formControlName="name"
+               name="name">
+      </label>
+    </div>
+    <div *ngIf="ngForm.submitted && name.invalid">
+      Product name is required
+    </div>
+    <br><br>
+    <div class="age-form">
+      <label>Select age brackets<br><br>
+        <select formControlName="age"
+                name="age"
+                multiple>
+          <option *ngFor="let item of ageBrackets | keyvalue"
+                  value="{{item.value}}">
+            {{item.key}}
+          </option>
+        </select>
+      </label>
+    </div>
+    <div *ngIf="ngForm.submitted && age.invalid">
+      Age is required
+    </div>
+    <br><br>
+    <div class="income-form">
+      <label>Select income brackets<br><br>
+        <select formControlName="income"
+                name="income"
+                multiple>
+          <option *ngFor="let item of incomeBrackets | keyvalue"
+                  value="{{item.value}}">
+            {{item.key}}
+          </option>
+        </select>
+      </label>
+    </div>
+    <div *ngIf="ngForm.submitted && income.invalid">
+      Income is required
+    </div>
+    <br><br>
+    <div class="student-form">
+      <label>Is this product exclusively for students?<br><br></label>
+      <label>
+        <input type="radio"
+               name="student"
+               formControlName="student"
+               value="true">
+        Yes
+      </label>
+      <label>
+        <input type="radio"
+               name="student"
+               formControlName="student"
+               value="false">
+        No
+      </label>
+    </div>
+    <div *ngIf="ngForm.submitted && student.invalid">
+      Please choose "yes" or "no"
+    </div>
+    <br><br>
+    <div class="submit-button">
+      <input type="submit" value="Save changes">
+    </div>
+
+  </form>
+  <div *ngIf="isSubmitted">
+    <div>Product updated successfully</div>
+    <button routerLink="..">Back</button>
+  </div>
+</div>
+
+
