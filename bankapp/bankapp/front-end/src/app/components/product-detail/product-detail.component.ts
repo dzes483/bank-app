@@ -35,7 +35,7 @@ export class ProductDetailComponent implements OnInit {
     this.productEditForm = this.fb.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
       age: [null, Validators.required],
-      student: [false, Validators.required],
+      student: [null, Validators.required],
       income: [null, Validators.required]
     });
   }
@@ -49,12 +49,7 @@ export class ProductDetailComponent implements OnInit {
   getProduct(productSlug: string): any {
     this.productService.get(productSlug).subscribe(
       response => {
-        productSlug = response.slug;
-        this.productName = response.name;
-        this.productAge = response.age;
         console.log(response);
-        console.log(productSlug);
-        console.log(this.productName);
         this.productEditForm.setValue({
           name: response.name,
           age: response.age,
@@ -66,7 +61,6 @@ export class ProductDetailComponent implements OnInit {
         console.log(error);
       }
     );
-    return productSlug;
   }
 
   updateProduct(): void {
