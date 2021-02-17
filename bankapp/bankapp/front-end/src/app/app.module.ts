@@ -8,7 +8,6 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
 import { ProductService } from './services/product.service';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductManageComponent } from './components/product-manage/product-manage.component';
-import { SlugifyPipe } from './shared/slugify.pipe';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
     ProductAddComponent,
     ProductListComponent,
     ProductManageComponent,
-    SlugifyPipe,
     ProductDetailComponent,
   ],
   imports: [
