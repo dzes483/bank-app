@@ -7,22 +7,6 @@
       <p>{{product.student}}</p>
       <p>{{product.income}}</p>
       <a href="api/manage/{{product.slug}}">Edit</a>
-      <div [hidden]="isHideEdit">
-        <div class="form-group">
-          <form
-            [formGroup]="productEditForm"
-            #ngForm = "ngForm"
-            (ngSubmit)="productEditForm.valid">
-            <div class="name-form">
-              <label>Product Name
-                <input type="text"
-                       formControlName="name"
-                       name="name">
-              </label>
-            </div>
-          </form>
-        </div>
-      </div>
       <button type="submit" (click)="deleteProduct(product.slug)">Delete</button>
     </li>
   </ul>
