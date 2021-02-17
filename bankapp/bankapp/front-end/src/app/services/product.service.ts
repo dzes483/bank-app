@@ -25,7 +25,7 @@ export class ProductService {
     return this.http.post(`${BASE_URL}/manage/add`, data);
   }
 
-  update(data: any, productSlug: string): Observable<any> {
+  update(productSlug: string, data: any): Observable<any> {
     return this.http.put(`${BASE_URL}/manage/${productSlug}`, data);
   }
 
