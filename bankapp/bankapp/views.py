@@ -39,6 +39,7 @@ class ProductListViewSet(generics.ListAPIView):
     #     """
     #     Optionally restricts the products shown by filtering the query parameters in the URL.
     #     """
+    #     queryset = Product.objects.all()
     #     age = self.request.query_params.get('age')
     #     income = self.request.query_params.get('income')
     #     student = self.request.query_params.get('student')
