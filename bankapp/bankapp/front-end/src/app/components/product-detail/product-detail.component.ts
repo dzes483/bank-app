@@ -50,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
     this.productService.get(productSlug).subscribe(
       response => {
         console.log(response);
+        console.log(productSlug);
         this.productEditForm.setValue({
           name: response.name,
           age: response.age,
@@ -63,15 +64,17 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
-  updateProduct(): void {
-    this.productService.update(this.productSlug, this.productEditForm.value)
+  updateProduct(): any {
+    this.productService.update(this.route.snapshot.paramMap.get('productSlug') || '', this.productEditForm.value)
       .subscribe(
         (response: any) => {
           console.log(response);
+          console.log(this.productSlug);
           this.isSubmitted = true;
         },
         (error: any) => {
           this.errorMessage = error.error.message;
+          console.log(this.productSlug);
           this.isUpdateFailed = true;
           console.log(error);
         }
