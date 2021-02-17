@@ -12,7 +12,6 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductManageComponent implements OnInit {
 
   public products$?: any;
-  slug!: string;
   productEditForm: FormGroup;
   isHideEdit = true;
 
@@ -46,10 +45,6 @@ export class ProductManageComponent implements OnInit {
   toggleEditMenu(): void {
     this.isHideEdit = !this.isHideEdit;
   }
-
-  // updateProduct(): void {
-  //   this.productService.update(this.product$, this.productSlug);
-  // }
 
   deleteProduct(productSlug: string): void {
     if (window.confirm('Are you sure you wish to delete this product?')) {
