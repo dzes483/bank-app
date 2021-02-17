@@ -6,7 +6,7 @@
       <p>{{product.age}}</p>
       <p>{{product.student}}</p>
       <p>{{product.income}}</p>
-      <a href="api/manage/{{product.slug}}">Edit</a>
+      <a routerLink="{{product.slug}}">Edit</a>
       <button type="submit" (click)="deleteProduct(product.slug)">Delete</button>
     </li>
   </ul>
