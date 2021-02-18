@@ -5,6 +5,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ProductManageComponent } from './components/product-manage/product-manage.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import {LoginComponent} from './components/login/login.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'api/manage/add', component: ProductAddComponent },
   { path: 'api/manage/:productSlug', component: ProductDetailComponent },
   { path: 'api/manage', component: ProductManageComponent },
+  { path: 'api/login', component: LoginComponent }
 ];
 
 @NgModule({
