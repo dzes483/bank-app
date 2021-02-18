@@ -7,7 +7,7 @@ from bankapp.models import Product
 from bankapp.serializers import UserSerializer, GroupSerializer, ProductSerializer
 
 
-class ProductCreateViewSet(mixins.CreateModelMixin, generics.GenericAPIView):
+class ProductCreateViewSet(generics.CreateAPIView):
     """
     API endpoint that allows products to be created.
     """
