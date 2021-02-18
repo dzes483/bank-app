@@ -34,19 +34,18 @@ class ProductListViewSet(generics.ListAPIView):
     API endpoint that allows products to be viewed.
     """
     serializer_class = ProductSerializer
-    queryset = Product.objects.all()
-    # def get_queryset(self):
-    #     """
-    #     Optionally restricts the products shown by filtering the query parameters in the URL.
-    #     """
-    #     queryset = Product.objects.all()
-    #     age = self.request.query_params.get('age')
-    #     income = self.request.query_params.get('income')
-    #     student = self.request.query_params.get('student')
-    #     params = [age, income, student]
-    #     if params:
-    #         queryset = queryset.filter(age__contains=age, income__contains=income, student__exact=student)
-    #     return queryset
+
+    def get_queryset(self):
+        """
+        Optionally restricts the products shown by filtering the query parameters in the URL.
+        """
+        queryset = Product.objects.all()
+        age = self.request.query_params.get('age')
+        income = self.request.query_params.get('income')
+        student = self.request.query_params.get('student')
+        if age or income or student:
+            queryset = queryset.filter(age__contains=[age], income__contains=[income], student__exact=student)
+        return queryset
 
 
 class UserViewSet(viewsets.ModelViewSet):
