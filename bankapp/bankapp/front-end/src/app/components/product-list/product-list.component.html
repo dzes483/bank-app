@@ -64,5 +64,8 @@
     <button type="submit">Get recommendations</button>
   </form>
 </div>
-<div>
+<div *ngIf="products">
+  <div *ngFor="let product of products">
+    {{product.name}}
+  </div>
 </div>
