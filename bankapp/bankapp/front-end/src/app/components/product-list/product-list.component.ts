@@ -52,9 +52,9 @@ export class ProductListComponent {
       this.queryForm.value.income,
       this.queryForm.value.student
     ).subscribe(
-      (products: any) => {
-        this.products = products;
-        console.log(products);
+      (response: any) => {
+        this.products = response.results;
+        console.log(response.results);
       },
       error => {
         console.log(error);
