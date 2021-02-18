@@ -9,6 +9,9 @@ import { ProductService } from './services/product.service';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductManageComponent } from './components/product-manage/product-manage.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { LoginComponent } from './components/login/login.component';
+import {AuthService} from './services/auth.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
     ProductListComponent,
     ProductManageComponent,
     ProductDetailComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,8 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
   ],
   providers: [
     ProductService,
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
