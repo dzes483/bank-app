@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from django.views.generic.base import TemplateView
-from rest_framework import viewsets, mixins, generics
+from rest_framework import viewsets, mixins, generics, permissions
 # import django_filters.rest_framework
 
 from bankapp.models import Product
@@ -13,7 +13,7 @@ class ProductCreateViewSet(generics.CreateAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
