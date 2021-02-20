@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:8000/api';
 
@@ -10,15 +11,15 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() {
+  getAll(): Observable<any> {
     return this.http.get(`${BASE_URL}/users`);
   }
 
-  register(user: any) {
+  register(user: any): Observable<any> {
     return this.http.post(`${BASE_URL}/register`, user);
   }
 
-  delete(id: number) {
+  delete(id: number): Observable<any> {
     return this.http.delete(`${BASE_URL}/users/${id}`);
   }
 }
