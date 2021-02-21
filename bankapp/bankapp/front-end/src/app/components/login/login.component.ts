@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +11,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
 
   constructor(private authService: AuthService,
-              private fb: FormBuilder,
-              private router: Router) {
+              private tokenStorage: TokenStorageService,
+              private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       username: [null, Validators.required],
       password: [null, Validators.required]
@@ -22,20 +25,30 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    }
   }
 
-  login(): any {
+  login(): void {
     this.authService.login(this.loginForm.value).subscribe(
-      (response: any) => {
-        console.log(response);
-        if (response.access_token) {
-          this.authService.storeInLocalStorage('token', response.access_token);
-          this.router.navigate(['api/products']).then(r => console.log(r));
-        }
+      (data: any) => {
+        console.log(data);
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.reloadPage();
       },
-      (error: any) => {
-        console.log(error);
+      (err: any) => {
+        this.errorMessage = err.error.message;
+        console.log(this.errorMessage);
+        this.isLoginFailed = true;
       });
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 
 }

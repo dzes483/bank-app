@@ -1,6 +1,6 @@
 <h1>Login</h1>
 
-<div>
+<div *ngIf="!isLoggedIn">
   <form [formGroup]="loginForm"
         (ngSubmit)="loginForm.valid && login()"
         #ngForm = "ngForm">
