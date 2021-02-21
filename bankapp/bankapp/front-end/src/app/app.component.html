@@ -4,19 +4,23 @@
       <a routerLink="api/products"
          routerLinkActive="active">PRODUCTS</a>
     </li>
-    <li>
+    <li *ngIf="isLoggedIn">
       <a routerLink="api/manage"
          routerLinkActive="active">MANAGE PRODUCTS</a>
     </li>
-    <li>
+    <li *ngIf="isLoggedIn">
       <a routerLink="api/manage/add"
          routerLinkActive="active">ADD PRODUCTS</a>
     </li>
-    <li>
+    <li *ngIf="!isLoggedIn">
       <a
         routerLink="api/login"
         routerLinkActive="active">LOGIN</a>
-      <a>LOGOUT</a>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <a
+        (click)="logout()"
+        routerLinkActive="active">LOGOUT</a>
     </li>
   </ul>
 
