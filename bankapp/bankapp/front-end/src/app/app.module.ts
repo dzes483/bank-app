@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+// Components
 import { AppComponent } from './app.component';
 import { ProductAddComponent } from './components/product-add/product-add.component';
-import { ProductService } from './services/product.service';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductManageComponent } from './components/product-manage/product-manage.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { LoginComponent } from './components/login/login.component';
-import {AuthService} from './services/auth.service';
-import { UserService } from './services/user.service';
 import { RegisterComponent } from './components/register/register.component';
-import {AuthInterceptor} from './helpers/auth.interceptor';
+// Services
+import { ProductService } from './services/product.service';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+// Helpers
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,11 +36,7 @@ import {AuthInterceptor} from './helpers/auth.interceptor';
     FormsModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
+    authInterceptorProviders,
     ProductService,
     AuthService,
     UserService
