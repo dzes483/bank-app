@@ -15,10 +15,6 @@ export class UserService {
     return this.http.get(`${BASE_URL}/users`);
   }
 
-  register(user: any): Observable<any> {
-    return this.http.post(`${BASE_URL}/register`, user);
-  }
-
   delete(id: number): Observable<any> {
     return this.http.delete(`${BASE_URL}/users/${id}`);
   }
