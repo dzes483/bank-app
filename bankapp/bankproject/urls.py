@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from bankapp import views
 
 
@@ -11,8 +11,8 @@ router.register(r'groups', views.GroupViewSet)
 
 
 urlpatterns = [
-    path('api/login', obtain_jwt_token),
-    path('api/refresh_jwt_token', refresh_jwt_token),
+    path('api/login', TokenObtainPairView.as_view()),
+    path('api/refresh_jwt_token', TokenRefreshView.as_view()),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/', include('rest_framework.urls')),
