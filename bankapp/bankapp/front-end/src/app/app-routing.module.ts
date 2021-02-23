@@ -7,13 +7,14 @@ import { ProductManageComponent } from './components/product-manage/product-mana
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import {AuthGuard} from './helpers/auth.guard';
 
 
 const routes: Routes = [
   { path: 'api/products', component: ProductListComponent },
-  { path: 'api/manage/add', component: ProductAddComponent },
-  { path: 'api/manage/:productSlug', component: ProductDetailComponent },
-  { path: 'api/manage', component: ProductManageComponent },
+  { path: 'api/manage/add', component: ProductAddComponent, canActivate: [AuthGuard] },
+  { path: 'api/manage/:productSlug', component: ProductDetailComponent, canActivate: [AuthGuard] },
+  { path: 'api/manage', component: ProductManageComponent, canActivate: [AuthGuard] },
   { path: 'api/login', component: LoginComponent },
   { path: 'api/register', component: RegisterComponent }
 ];
