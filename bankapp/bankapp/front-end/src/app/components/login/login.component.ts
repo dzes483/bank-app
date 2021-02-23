@@ -30,25 +30,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login(): void {
+  signIn(): void {
+    console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe(
-      (data: any) => {
-        console.log(data);
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+      response => {
+        console.log(response);
+        this.tokenStorage.saveToken(response.access);
+        this.tokenStorage.saveUser(response);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.reloadPage();
+        window.location.reload();
       },
-      (err: any) => {
-        this.errorMessage = err.error.message;
-        console.log(this.errorMessage);
+      error => {
+        this.errorMessage = error.error.message;
         this.isLoginFailed = true;
-      });
+      }
+    );
   }
-
-  reloadPage(): void {
-    window.location.reload();
-  }
-
 }

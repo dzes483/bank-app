@@ -2,7 +2,7 @@
 
 <div *ngIf="!isLoggedIn">
   <form [formGroup]="loginForm"
-        (ngSubmit)="loginForm.valid && login()"
+        (ngSubmit)="loginForm.valid && signIn()"
         #ngForm = "ngForm">
     <div class="username-form">
       <label>Username<br>
