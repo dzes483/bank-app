@@ -21,7 +21,7 @@ class ProductCreateViewSet(generics.CreateAPIView):
 
 class ProductDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
     """
-    A simple viewset for viewing and editing products.
+    API endpoint that allows products to be viewed, edited, and deleted.
     """
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
@@ -48,16 +48,34 @@ class ProductListViewSet(generics.ListAPIView):
         return queryset
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserListView(generics.ListAPIView):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows users to be viewed.
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class UserCreateView(generics.CreateAPIView):
+    """
+    API endpoint that allows users to be created.
+    """
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
+
+
+class UserEditView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that allows users to be viewed, edited, and deleted.
+    """
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    # permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'pk'
+
+
+class GroupListView(generics.ListAPIView):
     """
     API endpoint that allows groups to be viewed or edited.
     """
