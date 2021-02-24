@@ -17,6 +17,11 @@
         routerLink="api/login"
         routerLinkActive="active">LOGIN</a>
     </li>
+    <li *ngIf="!isLoggedIn">
+      <a
+        routerLink="api/register"
+        routerLinkActive="active">REGISTER</a>
+    </li>
     <li *ngIf="isLoggedIn">
       <a
         (click)="logout()"
