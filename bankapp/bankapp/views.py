@@ -77,12 +77,30 @@ class UserEditView(generics.RetrieveUpdateDestroyAPIView):
 
 class GroupListView(generics.ListAPIView):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows groups to be viewed.
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
+
+class GroupCreateView(generics.CreateAPIView):
+    """
+    API endpoint that allows groups to be created.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+class GroupEditView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that allows groups to be viewed, edited, and deleted.
+    """
+    serializer_class = GroupSerializer
+    queryset = Group.objects.all()
+    # permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'pk'
 
 # class FrontEndRenderView(TemplateView):
 #     template_name = 'bankapp/index.html'
