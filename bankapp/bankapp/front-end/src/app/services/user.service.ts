@@ -15,7 +15,15 @@ export class UserService {
     return this.http.get(`${BASE_URL}/users`);
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(`${BASE_URL}/users/${id}`);
+  get(id: string): Observable<any> {
+    return this.http.get(`${BASE_URL}/manage/users/${id}`);
+  }
+
+  update(id: string, data: any): Observable<any> {
+    return this.http.put(`${BASE_URL}/manage/users/${id}`, data);
+  }
+
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${BASE_URL}/manage/users/${id}`);
   }
 }
