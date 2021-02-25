@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {AuthGuard} from './helpers/auth.guard';
 import {UserListComponent} from './components/user-list/user-list.component';
+import {UserDetailComponent} from './components/user-detail/user-detail.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: 'api/manage', component: ProductManageComponent, canActivate: [AuthGuard] },
   { path: 'api/login', component: LoginComponent },
   { path: 'api/register', component: RegisterComponent },
-  { path: 'api/users', component: UserListComponent}
+  { path: 'api/users/:id', component: UserDetailComponent },
+  { path: 'api/users', component: UserListComponent },
+
 ];
 
 @NgModule({
