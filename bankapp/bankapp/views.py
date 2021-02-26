@@ -1,7 +1,5 @@
 from django.contrib.auth.models import User, Group
-from django.views.generic.base import TemplateView
-from rest_framework import viewsets, mixins, generics, permissions
-# import django_filters.rest_framework
+from rest_framework import generics, permissions
 
 from bankapp.models import Product
 from bankapp.serializers import UserSerializer, GroupSerializer, ProductSerializer
