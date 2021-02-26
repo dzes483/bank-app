@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class UserDetailComponent implements OnInit {
 
   userEditForm: FormGroup;
+  userName!: string;
   isSubmitted = false;
   isUpdateFailed = false;
   id!: string;
@@ -21,8 +22,7 @@ export class UserDetailComponent implements OnInit {
               private route: ActivatedRoute,
               private fb: FormBuilder) {
     this.userEditForm = this.fb.group({
-      username: [null, [Validators.required, Validators.minLength(3)]],
-      password: [null, Validators.required],
+      username: [null, [Validators.required, Validators.minLength(3)]]
     });
   }
 
@@ -36,10 +36,8 @@ export class UserDetailComponent implements OnInit {
     this.userService.get(id).subscribe(
       response => {
         console.log(response);
-        console.log(id);
-        this.userEditForm.setValue({
-          username: response.username,
-          password: response.password,
+        this.userEditForm.patchValue({
+          username: response.username
         });
       },
       error => {
@@ -66,16 +64,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   // Getters
-  get name(): any {
-    return this.productEditForm.get('name');
-  }
-  get age(): any {
-    return this.productEditForm.get('age');
-  }
-  get income(): any {
-    return this.productEditForm.get('income');
-  }
-  get student(): any {
-    return this.productEditForm.get('student');
+  get username(): any {
+    return this.userEditForm.get('username');
   }
 }

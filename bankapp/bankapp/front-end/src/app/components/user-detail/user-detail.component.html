@@ -1,1 +1,30 @@
 <p>user-detail works!</p>
+<p>{{userName}}</p>
+<h2>Edit User</h2>
+
+<div class="form-group">
+  <form [formGroup]="userEditForm"
+        (ngSubmit)="userEditForm.valid && updateUser()"
+        #ngForm = "ngForm">
+    <div class="username-form">
+      <label>Username<br>
+        <input type="text"
+               formControlName="username"
+               name="username">
+      </label>
+    </div>
+    <div *ngIf="ngForm.submitted && username.invalid">
+      Username is required
+    </div>
+    <br><br>
+    <div class="submit-button">
+      <input type="submit" value="Save changes">
+    </div>
+  </form>
+  <div *ngIf="isSubmitted">
+    <div>User updated successfully</div>
+    <button routerLink="..">Back</button>
+  </div>
+</div>
+
+
