@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'api/manage', component: ProductManageComponent, canActivate: [AuthGuard] },
   { path: 'api/login', component: LoginComponent },
   { path: 'api/register', component: RegisterComponent },
-  { path: 'api/users/:id', component: UserDetailComponent },
-  { path: 'api/users', component: UserListComponent },
+  { path: 'api/users/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+  { path: 'api/users', component: UserListComponent, canActivate: [AuthGuard] },
 
 ];
 

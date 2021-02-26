@@ -4,13 +4,17 @@
       <a routerLink="api/products"
          routerLinkActive="active">PRODUCTS</a>
     </li>
-    <li *ngIf="isLoggedIn">
+    <li *ngIf="showProductManagement">
       <a routerLink="api/manage"
          routerLinkActive="active">MANAGE PRODUCTS</a>
     </li>
-    <li *ngIf="isLoggedIn">
+    <li *ngIf="showProductManagement">
       <a routerLink="api/manage/add"
          routerLinkActive="active">ADD PRODUCTS</a>
+    </li>
+    <li *ngIf="showUserManagement">
+      <a routerLink="api/users"
+         routerLinkActive="active">USER MANAGEMENT</a>
     </li>
     <li *ngIf="!isLoggedIn">
       <a
