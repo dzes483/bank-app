@@ -1,8 +1,12 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import generics, permissions
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from bankapp.models import Product
-from bankapp.serializers import UserSerializer, GroupSerializer, ProductSerializer
+from bankapp.models import Product, CustomUser
+from bankapp.serializers import UserSerializer, ProductSerializer, TokenSerializer
+
+
+class TokenView(TokenObtainPairView):
+    serializer_class = TokenSerializer
 
 
 class ProductCreateViewSet(generics.CreateAPIView):
@@ -50,7 +54,7 @@ class UserListView(generics.ListAPIView):
     """
     API endpoint that allows users to be viewed.
     """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = CustomUser.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
@@ -68,37 +72,6 @@ class UserEditView(generics.RetrieveUpdateDestroyAPIView):
     API endpoint that allows users to be viewed, edited, and deleted.
     """
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     # permission_classes = [permissions.IsAuthenticated]
     lookup_field = 'pk'
-
-
-class GroupListView(generics.ListAPIView):
-    """
-    API endpoint that allows groups to be viewed.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    # permission_classes = [permissions.IsAuthenticated]
-
-
-class GroupCreateView(generics.CreateAPIView):
-    """
-    API endpoint that allows groups to be created.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    # permission_classes = [permissions.IsAuthenticated]
-
-
-class GroupEditView(generics.RetrieveUpdateDestroyAPIView):
-    """
-    API endpoint that allows groups to be viewed, edited, and deleted.
-    """
-    serializer_class = GroupSerializer
-    queryset = Group.objects.all()
-    # permission_classes = [permissions.IsAuthenticated]
-    lookup_field = 'pk'
-
-# class FrontEndRenderView(TemplateView):
-#     template_name = 'bankapp/index.html'

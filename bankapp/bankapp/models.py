@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import AbstractUser
 
 AGE_CHOICES = [
     ('JUNIOR', '0-17'),
@@ -14,6 +15,12 @@ INCOME_CHOICES = [
     ('LOW_INCOME', '1-12000'),
     ('MEDIUM_INCOME', '12001-40000'),
     ('HIGH_INCOME', '40000+')
+]
+
+ROLE_CHOICES = [
+    ('ADMIN', 'Admin'),
+    ('PRODUCT-MANAGER', 'Product Manager'),
+    ('USER', 'User')
 ]
 
 
@@ -33,3 +40,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CustomUser(AbstractUser):
+    role = models.CharField(default='USER', choices=ROLE_CHOICES, max_length=20)
