@@ -16,13 +16,11 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user = this.tokenStorage.getUser();
-    if (this.tokenStorage.getToken()) {
-      return true;
-    } else {
-      // not logged in, so redirect to login page with the return URL
-      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    if (user === null || !user.role.includes(route.data.role)) {
+      this.router.navigate(['/login']);
       return false;
     }
+    return true;
   }
 
 
