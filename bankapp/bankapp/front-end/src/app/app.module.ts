@@ -19,6 +19,8 @@ import { UserService } from './services/user.service';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { HomeComponent } from './components/home/home.component';
+import {httpInterceptorProviders} from './helpers/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     RegisterComponent,
     UserListComponent,
     UserDetailComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
   ],
   providers: [
     authInterceptorProviders,
+    httpInterceptorProviders,
     ProductService,
     AuthService,
     UserService
