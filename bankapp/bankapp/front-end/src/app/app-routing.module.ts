@@ -7,20 +7,22 @@ import { ProductManageComponent } from './components/product-manage/product-mana
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import {AuthGuard} from './helpers/auth.guard';
-import {UserListComponent} from './components/user-list/user-list.component';
-import {UserDetailComponent} from './components/user-detail/user-detail.component';
-
+import { AuthGuard } from './helpers/auth.guard';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: 'api/products', component: ProductListComponent },
-  { path: 'api/manage/add', component: ProductAddComponent, canActivate: [AuthGuard] },
-  { path: 'api/manage/:productSlug', component: ProductDetailComponent, canActivate: [AuthGuard] },
-  { path: 'api/manage', component: ProductManageComponent, canActivate: [AuthGuard] },
-  { path: 'api/login', component: LoginComponent },
-  { path: 'api/register', component: RegisterComponent },
-  { path: 'api/users/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
-  { path: 'api/users', component: UserListComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent },
+  { path: 'products', component: ProductListComponent, canActivate: [AuthGuard] },
+  { path: 'products/manage/add', component: ProductAddComponent, canActivate: [AuthGuard] },
+  { path: 'products/manage/:productSlug', component: ProductDetailComponent, canActivate: [AuthGuard] },
+  { path: 'products/manage', component: ProductManageComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'users/manage/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+  { path: 'users/manage', component: UserListComponent, canActivate: [AuthGuard] },
 
 ];
 
