@@ -5,10 +5,11 @@
       <h5>Username:</h5>
       <p>{{user.username}}</p>
       <p>{{user.id}}</p>
-      <p>{{user.groups}}</p>
-      <p>{{user.user_permissions}}</p>
-      <a routerLink="{{user.id}}">Edit</a>
-      <button type="submit" (click)="deleteUser(user.id)">Delete</button>
+      <p>{{user.last_login}}</p>
+      <div *ngIf="user.username != 'admin' && user.username != 'product-manager' ">
+        <a routerLink="{{user.id}}">Edit</a>
+        <button type="submit" (click)="deleteUser(user.id)">Delete</button>
+      </div>
     </li>
   </ul>
 </div>
