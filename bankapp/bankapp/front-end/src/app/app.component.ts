@@ -26,17 +26,15 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.decodedToken = jwt_decode(user.access);
-      console.log(`User: ${user}`);
-      console.log('Hi');
-      console.log(this.decodedToken);
       this.role = this.decodedToken.role;
-      console.log(this.role);
+      this.username = this.decodedToken.username;
       this.showProductManagement = this.role.includes('ADMIN' || 'PRODUCT-MANAGER');
+      this.showUserManagement = this.role.includes('ADMIN');
     }
   }
 
   logout(): void {
     this.tokenStorageService.logout();
-    window.location.replace('/login');
+    window.location.replace('login');
   }
 }
