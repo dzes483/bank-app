@@ -1,0 +1,40 @@
+$dark-blue: #1948A7;
+$medium-blue: #0A6DFC;
+$light-blue: #2B86F1;
+$betina-font: 'BetinaSansRegular', sans-serif;
+
+.nav-bar {
+  background-color: $dark-blue;
+  font-family: $betina-font;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: -1em;
+  padding: -1em;
+}
+
+#nav-links {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  font-size: 1em;
+  font-weight: bold;
+}
+.nav-link {
+  margin-left: 3em;
+  margin-right: 3em;
+  text-decoration: none;
+  :link {
+    color: white;
+  }
+  :visited {
+    color: white;
+  }
+  :hover {
+    color: $light-blue;
+  }
+  :active {
+    color: $light-blue;
+  }
+}
+
