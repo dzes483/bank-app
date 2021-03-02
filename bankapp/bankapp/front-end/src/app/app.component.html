@@ -1,33 +1,40 @@
-<nav class="top-bar">
-  <ul>
-    <li>
-      <a routerLink="api/products"
+<nav class="nav-bar">
+  <ul id="nav-links">
+    <li *ngIf="isLoggedIn">
+      <p>Welcome, {{this.username}}</p>
+    </li>
+    <li *ngIf="isLoggedIn" class="nav-link">
+      <a class="nav-link"
+        routerLink="products"
          routerLinkActive="active">PRODUCTS</a>
     </li>
-    <li *ngIf="showProductManagement">
-      <a routerLink="api/manage"
+    <li *ngIf="showProductManagement" class="nav-link">
+      <a class="nav-link"
+        routerLink="products/manage"
          routerLinkActive="active">MANAGE PRODUCTS</a>
     </li>
-    <li *ngIf="showProductManagement">
-      <a routerLink="api/manage/add"
+    <li *ngIf="showProductManagement" class="nav-link">
+      <a routerLink="products/manage/add"
+         class="nav-link"
          routerLinkActive="active">ADD PRODUCTS</a>
     </li>
-    <li *ngIf="showUserManagement">
-      <a routerLink="api/users"
+    <li *ngIf="showUserManagement" class="nav-link">
+      <a class="nav-link"
+        routerLink="users/manage"
          routerLinkActive="active">USER MANAGEMENT</a>
     </li>
-    <li *ngIf="!isLoggedIn">
-      <a
-        routerLink="api/login"
+    <li *ngIf="!isLoggedIn" class="nav-link">
+      <a class="nav-link"
+        routerLink="login"
         routerLinkActive="active">LOGIN</a>
     </li>
-    <li *ngIf="!isLoggedIn">
-      <a
-        routerLink="api/register"
+    <li *ngIf="!isLoggedIn" class="nav-link">
+      <a class="nav-link"
+        routerLink="register"
         routerLinkActive="active">REGISTER</a>
     </li>
-    <li *ngIf="isLoggedIn">
-      <a
+    <li *ngIf="isLoggedIn" class="nav-link">
+      <a class="nav-link"
         (click)="logout()"
         routerLinkActive="active">LOGOUT</a>
     </li>
