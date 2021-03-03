@@ -1,47 +1,52 @@
-<nav class="nav-bar">
-  <ul id="nav-links">
-    <li *ngIf="isLoggedIn">
+<nav>
+  <ul class="menu">
+    <li class="logo">
+      <a routerLink="home"
+         routerLinkActive="active">$$$</a>
+    </li>
+    <li *ngIf="isLoggedIn" class="welcome">
       <p>Welcome, {{this.username}}</p>
     </li>
-    <li *ngIf="isLoggedIn" class="nav-link">
+    <li *ngIf="isLoggedIn" class="item">
       <a class="nav-link"
-        routerLink="products"
+         routerLink="products"
          routerLinkActive="active">PRODUCTS</a>
     </li>
-    <li *ngIf="showProductManagement" class="nav-link">
+    <li *ngIf="showProductManagement" class="item">
       <a class="nav-link"
         routerLink="products/manage"
          routerLinkActive="active">MANAGE PRODUCTS</a>
     </li>
-    <li *ngIf="showProductManagement" class="nav-link">
+    <li *ngIf="showProductManagement" class="item">
       <a routerLink="products/manage/add"
          class="nav-link"
          routerLinkActive="active">ADD PRODUCTS</a>
     </li>
-    <li *ngIf="showUserManagement" class="nav-link">
+    <li *ngIf="showUserManagement" class="item">
       <a class="nav-link"
         routerLink="users/manage"
          routerLinkActive="active">USER MANAGEMENT</a>
     </li>
-    <li *ngIf="!isLoggedIn" class="nav-link">
+    <li *ngIf="!isLoggedIn" class="item">
       <a class="nav-link"
         routerLink="login"
         routerLinkActive="active">LOGIN</a>
     </li>
-    <li *ngIf="!isLoggedIn" class="nav-link">
+    <li *ngIf="!isLoggedIn" class="item">
       <a class="nav-link"
         routerLink="register"
         routerLinkActive="active">REGISTER</a>
     </li>
-    <li *ngIf="isLoggedIn" class="nav-link">
+    <li *ngIf="isLoggedIn" class="item">
       <a class="nav-link"
         (click)="logout()"
         routerLinkActive="active">LOGOUT</a>
     </li>
+    <li class="toggle"><a href="#"></a><i class="fas fa-bars"></i></li>
   </ul>
 
 </nav>
-
+<p>Welcome, {{this.username}}</p>
 <div class="content-container">
   <router-outlet></router-outlet>
 </div>
