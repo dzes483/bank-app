@@ -1,52 +1,89 @@
-<nav>
-  <ul class="menu">
-    <li class="logo">
-      <a routerLink="home"
-         routerLinkActive="active">$$$</a>
-    </li>
-    <li *ngIf="isLoggedIn" class="welcome">
-      <p>Welcome, {{this.username}}</p>
-    </li>
-    <li *ngIf="isLoggedIn" class="item">
-      <a class="nav-link"
-         routerLink="products"
-         routerLinkActive="active">PRODUCTS</a>
-    </li>
-    <li *ngIf="showProductManagement" class="item">
-      <a class="nav-link"
-        routerLink="products/manage"
-         routerLinkActive="active">MANAGE PRODUCTS</a>
-    </li>
-    <li *ngIf="showProductManagement" class="item">
-      <a routerLink="products/manage/add"
-         class="nav-link"
-         routerLinkActive="active">ADD PRODUCTS</a>
-    </li>
-    <li *ngIf="showUserManagement" class="item">
-      <a class="nav-link"
-        routerLink="users/manage"
-         routerLinkActive="active">USER MANAGEMENT</a>
-    </li>
-    <li *ngIf="!isLoggedIn" class="item">
-      <a class="nav-link"
-        routerLink="login"
-        routerLinkActive="active">LOGIN</a>
-    </li>
-    <li *ngIf="!isLoggedIn" class="item">
-      <a class="nav-link"
-        routerLink="register"
-        routerLinkActive="active">REGISTER</a>
-    </li>
-    <li *ngIf="isLoggedIn" class="item">
-      <a class="nav-link"
-        (click)="logout()"
-        routerLinkActive="active">LOGOUT</a>
-    </li>
-    <li class="toggle"><a href="#"></a><i class="fas fa-bars"></i></li>
-  </ul>
-
+<nav class="navbar">
+  <div class="brand">
+    <ul class="brand-items">
+      <li>
+        <a class="navbar-logo"
+           routerLinkActive="active"
+           routerLink="home">
+          <i class="fa fa-university"></i>  BANK</a>
+      </li>
+      <li class="brand-item"
+          *ngIf="isLoggedIn">
+        <a>Welcome, {{this.username}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="nav">
+    <ul class="nav-items">
+      <li class="nav-item"
+          *ngIf="isLoggedIn">
+        <a class="nav-link active"
+           routerLink="products"
+           routerLinkActive="active"
+           aria-current="page">
+          PRODUCT RECOMMENDATIONS
+        </a>
+      </li>
+      <li class="nav-item dropdown"
+          *ngIf="showProductManagement">
+        <a class="nav-link dropdown-toggle"
+           href="#"
+           id="navbarDropdown"
+           role="button">
+          MANAGEMENT
+        </a>
+        <ul class="dropdown-items"
+            aria-labelledby="navbarDropdown">
+          <li>
+            <a class="dropdown-item"
+               routerLink="products/manage"
+               routerLinkActive="active">MANAGE PRODUCTS
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLink="products/manage/add"
+               routerLinkActive="active">ADD PRODUCTS
+            </a>
+          </li>
+          <li *ngIf="showUserManagement">
+            <a class="dropdown-item"
+               routerLink="users/manage"
+               routerLinkActive="active">USER MANAGEMENT
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item"
+          *ngIf="!isLoggedIn">
+        <a class="nav-link active"
+           routerLink="login"
+           routerLinkActive="active"
+           aria-current="page">
+          LOGIN
+        </a>
+      </li>
+      <li class="nav-item"
+          *ngIf="!isLoggedIn">
+        <a class="nav-link active"
+           routerLink="register"
+           routerLinkActive="active"
+           aria-current="page">
+          REGISTER
+        </a>
+      </li>
+      <li class="nav-item"
+          *ngIf="isLoggedIn">
+        <a class="nav-link active"
+           (click)="logout()"
+           routerLinkActive="active"
+           aria-current="page">
+          LOGOUT
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>
-<p>Welcome, {{this.username}}</p>
 <div class="content-container">
   <router-outlet></router-outlet>
 </div>
