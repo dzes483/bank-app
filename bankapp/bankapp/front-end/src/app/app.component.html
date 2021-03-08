@@ -24,13 +24,13 @@
           PRODUCT RECOMMENDATIONS
         </a>
       </li>
-      <li class="nav-item dropdown"
+      <li class="dropdown-btn"
           *ngIf="showProductManagement">
         <a class="nav-link dropdown-toggle"
-           href="#"
            id="navbarDropdown"
            role="button">
           MANAGEMENT
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
         </a>
         <ul class="dropdown-items"
             aria-labelledby="navbarDropdown">
@@ -76,8 +76,7 @@
           *ngIf="isLoggedIn">
         <a class="nav-link active"
            (click)="logout()"
-           routerLinkActive="active"
-           aria-current="page">
+           routerLinkActive="active">
           LOGOUT
         </a>
       </li>
