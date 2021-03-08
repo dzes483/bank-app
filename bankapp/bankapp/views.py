@@ -46,7 +46,10 @@ class ProductListViewSet(generics.ListAPIView):
         income = self.request.query_params.get('income')
         student = self.request.query_params.get('student')
         if age or income or student:
-            queryset = queryset.filter(age__contains=[age], income__contains=[income], student__exact=student)
+            if not student:
+                queryset = queryset.filter(age__contains=[age], income__contains=[income], student__exact=student)
+            else:
+                queryset = queryset.filter(age__contains=[age], income__contains=[income])
         return queryset
 
 
