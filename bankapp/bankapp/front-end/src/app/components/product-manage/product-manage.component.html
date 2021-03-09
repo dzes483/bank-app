@@ -1,14 +1,25 @@
-<p>Product manage</p>
-<div>
-  <ul>
-    <li *ngFor="let product of products$">
-      <h5>Product Name:</h5>
-      <p>{{product.name}}</p>
-      <p>{{product.age}}</p>
-      <p>{{product.student}}</p>
-      <p>{{product.income}}</p>
-      <a routerLink="{{product.slug}}">Edit</a>
-      <button type="submit" (click)="deleteProduct(product.slug)">Delete</button>
-    </li>
-  </ul>
+<h1 class="content-header">Product Management</h1>
+<div class="content-container">
+  <table class="content-table">
+    <tr>
+      <th>Product Name</th>
+      <th>Age Brackets</th>
+      <th>Income Brackets</th>
+      <th>Student Status</th>
+      <th>Edit Product</th>
+      <th>Delete Product</th>
+    </tr>
+    <tr *ngFor="let product of products$">
+      <td>{{product.name}}</td>
+      <td>{{product.age}}</td>
+      <td>{{product.income}}</td>
+      <td>{{product.student}}</td>
+      <td>
+        <button class="primary-btn" type="button" routerLink="{{product.slug}}">Edit</button>
+<!--        <a routerLink="{{product.slug}}">Edit</a>-->
+      </td>
+      <td>
+        <button class="warning-btn" type="submit" (click)="deleteProduct(product.slug)">Delete</button></td>
+    </tr>
+  </table>
 </div>

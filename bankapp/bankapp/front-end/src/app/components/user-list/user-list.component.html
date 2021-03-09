@@ -1,4 +1,28 @@
-<p>User management</p>
+<h1 class="content-header">User Management</h1>
+<div class="content-container">
+  <table class="content-table" *ngIf="users$">
+    <tr>
+      <th>User ID</th>
+      <th>Username</th>
+      <th>User Role</th>
+      <th>Last Login</th>
+      <th>Edit User</th>
+      <th>Delete User</th>
+    </tr>
+    <tr *ngFor="let user of users$">
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.role}}</td>
+      <td>{{user.last_login}}</td>
+      <td *ngIf="user.username != 'admin' && user.username != 'product-manager'">
+        <a routerLink="{{user.id}}">Edit</a>
+      </td>
+      <td *ngIf="user.username != 'admin' && user.username != 'product-manager'">
+        <button class="warning-btn" type="submit" (click)="deleteUser(user.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
 <div *ngIf="users$">
   <ul>
     <li *ngFor="let user of users$">

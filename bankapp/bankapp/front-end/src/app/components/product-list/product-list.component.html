@@ -1,4 +1,4 @@
-<h2>Product Recommendations</h2>
+<h1 class="content-header">Product Recommendations</h1>
 
 <div class="form-group">
   <form [formGroup]="queryForm"
@@ -61,11 +61,12 @@
       Please choose "yes" or "no"
     </div>
     <br><br>
-    <button type="submit">Get recommendations</button>
+    <button class="primary-btn" type="submit">Get recommendations</button>
   </form>
 </div>
 <div *ngIf="products">
-  <div *ngFor="let product of products">
-    {{product.name}}
-  </div>
+  <h2 class="content-header-2">Your recommended products:</h2>
+    <div *ngFor="let product of products" class="content-list">
+      {{product.name}}
+    </div>
 </div>
