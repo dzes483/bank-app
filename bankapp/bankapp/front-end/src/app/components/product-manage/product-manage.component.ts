@@ -46,8 +46,8 @@ export class ProductManageComponent implements OnInit {
     this.isHideEdit = !this.isHideEdit;
   }
 
-  deleteProduct(productSlug: string): void {
-    if (window.confirm('Are you sure you wish to delete this product?')) {
+  deleteProduct(productSlug: string, productName: string): void {
+    if (window.confirm(`Are you sure you wish to delete the ${productName} product?`)) {
       this.productService.delete(productSlug).subscribe(res => this.getProducts());
     }
   }
