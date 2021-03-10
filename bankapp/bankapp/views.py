@@ -57,7 +57,7 @@ class UserListView(generics.ListAPIView):
     """
     API endpoint that allows users to be viewed.
     """
-    queryset = CustomUser.objects.all().order_by('-date_joined')
+    queryset = CustomUser.objects.all().order_by('username')
     serializer_class = UserSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
