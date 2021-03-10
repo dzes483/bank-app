@@ -5,7 +5,6 @@
       <th>User ID</th>
       <th>Username</th>
       <th>User Role</th>
-      <th>Last Login</th>
       <th>Edit User</th>
       <th>Delete User</th>
     </tr>
@@ -13,27 +12,18 @@
       <td>{{user.id}}</td>
       <td>{{user.username}}</td>
       <td>{{user.role}}</td>
-      <td>{{user.last_login}}</td>
-      <td *ngIf="user.username != 'admin' && user.username != 'product-manager'">
+      <td *ngIf="user.role == 'ADMIN' || user.role == 'PRODUCT-MANAGER'">
+        <p>---</p>
+      </td>
+      <td *ngIf="user.role == 'USER'">
         <a routerLink="{{user.id}}">Edit</a>
       </td>
-      <td *ngIf="user.username != 'admin' && user.username != 'product-manager'">
+      <td *ngIf="user.role == 'ADMIN' || user.role == 'PRODUCT-MANAGER'">
+        <p>---</p>
+      </td>
+      <td *ngIf="user.role == 'USER'">
         <button class="warning-btn" type="submit" (click)="deleteUser(user.id)">Delete</button>
       </td>
     </tr>
   </table>
-</div>
-<div *ngIf="users$">
-  <ul>
-    <li *ngFor="let user of users$">
-      <h5>Username:</h5>
-      <p>{{user.username}}</p>
-      <p>{{user.id}}</p>
-      <p>{{user.last_login}}</p>
-      <div *ngIf="user.username != 'admin' && user.username != 'product-manager' ">
-        <a routerLink="{{user.id}}">Edit</a>
-        <button type="submit" (click)="deleteUser(user.id)">Delete</button>
-      </div>
-    </li>
-  </ul>
 </div>
