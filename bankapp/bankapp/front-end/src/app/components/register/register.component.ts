@@ -37,3 +37,5 @@ export class RegisterComponent implements OnInit {
       });
   }
 }
+
+// TODO: Validator for min length
