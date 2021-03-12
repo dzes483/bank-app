@@ -11,17 +11,43 @@
                name="username">
       </label>
     </div>
+    <div class="form-error" *ngIf="username.touched && username.invalid || ngForm.submitted && username.invalid">
+      <div *ngIf="username.errors.pattern">
+        Usernames can only contain alpha-numeric characters.
+      </div>
+      <div *ngIf="username.errors.required">
+        This field is required.
+      </div>
+      <div *ngIf="username.errors.minlength">
+        Usernames must be at least three characters long.
+      </div>
+      <div *ngIf="username.errors.maxlength">
+        Usernames cannot exceed 20 characters.
+      </div>
+    </div>
+    <br>
     <div class="password-form">
       <label>Password<br>
         <input type="password"
                formControlName="password"
                name="password">
+        <input type="password"
+               name="password2">
       </label>
+    </div>
+    <div class="form-error" *ngIf="password.touched && password.invalid || ngForm.submitted && password.invalid">
+      <div *ngIf="password.errors.required">
+        This field is required.
+      </div>
+      <div *ngIf="password.errors.minlength">
+        Passwords must be at least eight characters long.
+      </div>
+      <div *ngIf="password.errors.maxlength">
+        Passwords cannot exceed 20 characters.
+      </div>
     </div>
     <br>
     <button type="submit" class="primary-btn">Register</button>
   </form>
 </div>
 
-<!--TODO: error handling (username must be alphanumeric)-->
-<!--TODO: touched for forms, color for touched-->

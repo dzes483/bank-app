@@ -11,6 +11,12 @@
                name="username">
       </label>
     </div>
+    <div class="form-error" *ngIf="username.touched && username.invalid || ngForm.submitted && username.invalid">
+      <div *ngIf="username.errors.required">
+        This field is required.
+      </div>
+    </div>
+    <br>
     <div class="password-form">
       <label>Password<br>
         <input type="password"
@@ -18,9 +24,12 @@
                name="password">
       </label>
     </div>
+    <div class="form-error" *ngIf="password.touched && password.invalid || ngForm.submitted && password.invalid">
+      <div *ngIf="password.errors.required">
+        This field is required.
+      </div>
+    </div>
     <br>
     <button type="submit" class="primary-btn">Login</button>
   </form>
 </div>
-
-<!--TODO: Error handling for login form-->
