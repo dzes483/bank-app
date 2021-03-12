@@ -16,8 +16,15 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService,
               private fb: FormBuilder) {
     this.registerForm = this.fb.group({
-      username: [null, Validators.required],
-      password: [null, Validators.required]
+      username: [null, [
+        Validators.required,
+        Validators.pattern('[A-Za-z0-9]+'),
+        Validators.minLength(3),
+        Validators.maxLength(20), ]],
+      password: [null, [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20)]]
     });
   }
 
@@ -35,6 +42,14 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = err.error.message;
         this.isRegisterFailed = true;
       });
+  }
+
+  // Getters
+  get username(): any {
+    return this.registerForm.get('username');
+  }
+  get password(): any {
+    return this.registerForm.get('password');
   }
 }
 

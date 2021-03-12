@@ -47,4 +47,12 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  // Getters
+  get username(): any {
+    return this.loginForm.get('username');
+  }
+  get password(): any {
+    return this.loginForm.get('password');
+  }
 }
+
