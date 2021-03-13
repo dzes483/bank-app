@@ -18,7 +18,7 @@
         </select>
       </label>
     </div>
-    <div *ngIf="ngForm.submitted && age.invalid">
+    <div class="form-error" *ngIf="age.touched && age.invalid || ngForm.submitted && age.invalid">
       Age is required
     </div>
     <br><br>
@@ -36,7 +36,7 @@
         </select>
       </label>
     </div>
-    <div *ngIf="ngForm.submitted && income.invalid">
+    <div class="form-error" *ngIf="income.touched && income.invalid || ngForm.submitted && income.invalid">
       Income is required
     </div>
     <br><br>
@@ -57,7 +57,7 @@
         No
       </label>
     </div>
-    <div *ngIf="ngForm.submitted && student.invalid">
+    <div class="form-error" *ngIf="student.touched && student.invalid ||ngForm.submitted && student.invalid">
       Please choose "yes" or "no"
     </div>
     <br><br>
@@ -70,5 +70,3 @@
       {{product.name}}
     </div>
 </div>
-
-<!--TODO: touched for forms, color for touched-->
