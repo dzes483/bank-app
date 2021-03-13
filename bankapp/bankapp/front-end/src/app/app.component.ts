@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       this.decodedToken = jwt_decode(user.access);
       this.role = this.decodedToken.role;
       this.username = this.decodedToken.username;
-      this.showProductManagement = this.role.includes('ADMIN' || 'PRODUCT-MANAGER');
+      this.showProductManagement = this.role.includes('PRODUCT-MANAGER') || this.role.includes('ADMIN');
       this.showUserManagement = this.role.includes('ADMIN');
     }
   }
