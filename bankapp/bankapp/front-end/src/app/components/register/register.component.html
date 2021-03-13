@@ -30,9 +30,10 @@
       <label>Password<br>
         <input type="password"
                formControlName="password"
-               name="password">
-        <input type="password"
-               name="password2">
+               name="password"
+               id="password">
+        <i title="Show password" class="fa fa-eye" (click)="showPassword()" aria-hidden="true"></i>
+        <br>
       </label>
     </div>
     <div class="form-error" *ngIf="password.touched && password.invalid || ngForm.submitted && password.invalid">

@@ -51,6 +51,13 @@ export class RegisterComponent implements OnInit {
   get password(): any {
     return this.registerForm.get('password');
   }
-}
 
-// TODO: Validator for min length
+  showPassword(): any {
+    const x = document.getElementById('password') as HTMLInputElement;
+    if (x.type === 'password') {
+      x.type = 'text';
+    } else {
+      x.type = 'password';
+    }
+  }
+}
