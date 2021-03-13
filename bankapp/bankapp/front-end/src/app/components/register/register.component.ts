@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern('[A-Za-z0-9]+'),
         Validators.minLength(3),
-        Validators.maxLength(20), ]],
+        Validators.maxLength(20)]],
       password: [null, [
         Validators.required,
         Validators.minLength(8),

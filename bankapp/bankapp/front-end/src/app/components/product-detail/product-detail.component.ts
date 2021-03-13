@@ -33,7 +33,9 @@ export class ProductDetailComponent implements OnInit {
               private route: ActivatedRoute,
               private fb: FormBuilder) {
     this.productEditForm = this.fb.group({
-      name: [null, [Validators.required, Validators.minLength(3)]],
+      name: [null, [
+        Validators.required, Validators.pattern('[A-Za-z0-9]+'),
+        Validators.minLength(3)]],
       age: [null, Validators.required],
       student: [null, Validators.required],
       income: [null, Validators.required]
